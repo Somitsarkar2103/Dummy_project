@@ -1,0 +1,751 @@
+﻿<!DOCTYPE html>
+<html lang=en>
+
+<head>
+  <meta charset=UTF-8 />
+  <meta name=viewport content=width=device-width, initial-scale=1.0 />
+  <title>CampusConnect REVA - Student Opportunity Intelligence Platform</title>
+  <link rel=stylesheet href=style.css />
+  <!-- Google Font: Inter -->
+  <link rel=preconnect href=https://fonts.googleapis.com />
+  <link rel=preconnect href=https://fonts.gstatic.com crossorigin />
+  <link href=https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap rel=stylesheet />
+</head>
+
+<body>
+
+  <!-- =========================================================
+       1. WELCOME / ONBOARDING SCREEN (FIRST-TIME VISITORS)
+       ========================================================= -->
+  <section id=loginScreen class=login-wrapper>
+    <div class=login-card>
+      <div class=login-brand>
+        <div class=brand-badge>REVA University</div>
+        <h1 class=login-title>CampusConnect <span>REVA</span></h1>
+        <p class=login-tagline>“Don’t search for opportunities. Let them find you.”</p>
+      </div>
+
+      <div class=login-description-box>
+        <p>AI-powered opportunity intelligence platform tailored for REVA students. Discover internships, hackathons,
+          workshops & scholarships matched to your exact skills and CGPA.</p>
+      </div>
+
+      <form id=loginForm class=login-form>
+        <div class=form-group>
+          <label for=loginName>Your Full Name</label>
+          <input type=text id=loginName placeholder=e.g. Somit Sarkar value=Somit Sarkar required />
+        </div>
+
+        <div class=form-group>
+          <label for=loginEmail>REVA Student Email</label>
+          <input type=email id=loginEmail placeholder=e.g. somit.s@reva.edu.in value=somit.s@reva.edu.in required />
+        </div>
+
+        <button type=submit class=btn btn-primary btn-block>
+          Continue to Platform &rarr;
+        </button>
+      </form>
+
+      <p class=login-footer-hint>✨ Hackathon MVP Demo &bull; Pre-configured for AIML 2nd Year Profile</p>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       2. MAIN APP LAYOUT (SIDEBAR + MAIN CONTENT)
+       ========================================================= -->
+  <div id=appLayout class=app-container style=display: none;>
+
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class=sidebar>
+      <!-- Sidebar Header / Logo -->
+      <div class=sidebar-header>
+        <div class=logo-mark>
+          <span class=logo-icon>⚡</span>
+          <div class=logo-text>
+            <h2>CampusConnect</h2>
+            <span class=logo-sub>REVA</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class=sidebar-nav>
+        <ul>
+          <li>
+            <button class=nav-link active data-page=dashboardPage>
+              <span class=nav-icon>🏠</span>
+              <span>Dashboard</span>
+            </button>
+          </li>
+          <li>
+            <button class=nav-link data-page=opportunitiesPage>
+              <span class=nav-icon>🔎</span>
+              <span>Opportunities</span>
+            </button>
+          </li>
+          <li>
+            <button class=nav-link data-page=recommendationsPage>
+              <span class=nav-icon>⭐</span>
+              <span>Recommendations</span>
+            </button>
+          </li>
+          <li>
+            <button class=nav-link data-page=applicationsPage>
+              <span class=nav-icon>📋</span>
+              <span>Applications</span>
+            </button>
+          </li>
+          <li>
+            <button class=nav-link data-page=deadlinesPage>
+              <span class=nav-icon>⏰</span>
+              <span>Deadlines</span>
+            </button>
+          </li>
+          <li>
+            <button class=nav-link data-page=roadmapPage>
+              <span class=nav-icon>🎯</span>
+              <span>Career Roadmap</span>
+            </button>
+          </li>
+          <li>
+            <button class=nav-link data-page=profilePage>
+              <span class=nav-icon>👤</span>
+              <span>Profile</span>
+            </button>
+          </li>
+          <li>
+            <button class=nav-link data-page=adminPage>
+              <span class=nav-icon>⚙️</span>
+              <span>Admin View</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Sidebar Footer (Active Student Profile Snippet) -->
+      <div class=sidebar-footer>
+        <div class=user-pill>
+          <div class=avatar id=sidebarAvatar>SS</div>
+          <div class=user-info>
+            <span class=user-name id=sidebarName>Somit Sarkar</span>
+            <span class=user-badge>REVA Student</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class=main-content>
+
+      <!-- TOP HEADER BAR -->
+      <header class=topbar>
+        <div class=mobile-brand>
+          <span class=logo-icon>⚡</span>
+          <h3>CampusConnect <span>REVA</span></h3>
+        </div>
+
+        <div class=topbar-search-hint>
+          <span class=status-dot></span>
+          <span>REVA Opportunity Intelligence Engine Active</span>
+        </div>
+
+        <div class=topbar-actions>
+          <!-- Notification Bell & Dropdown -->
+          <div class=notification-wrapper>
+            <button class=icon-button id=notifButton aria-label=Notifications title=Notifications>
+              <span class=bell-icon>🔔</span>
+              <span class=notif-badge id=notifCount>4</span>
+            </button>
+
+            <!-- Notifications Dropdown -->
+            <div class=notif-dropdown id=notifDropdown>
+              <div class=notif-header>
+                <h4>Notifications</h4>
+                <span class=notif-tag>4 New</span>
+              </div>
+              <ul class=notif-list id=notifList>
+                <li class=notif-item unread>
+                  <span class=notif-bullet red></span>
+                  <div>
+                    <p class=notif-text><strong>AI/ML Internship</strong> deadline in 2 days</p>
+                    <span class=notif-time>TechNova &bull; Urgent</span>
+                  </div>
+                </li>
+                <li class=notif-item unread>
+                  <span class=notif-bullet orange></span>
+                  <div>
+                    <p class=notif-text><strong>REVA Innovation Hackathon</strong> registration closes soon</p>
+                    <span class=notif-time>REVA University &bull; 5 days left</span>
+                  </div>
+                </li>
+                <li class=notif-item unread>
+                  <span class=notif-bullet green></span>
+                  <div>
+                    <p class=notif-text>You have <strong>4 new AI/ML recommendations</strong></p>
+                    <span class=notif-time>Match score above 90%</span>
+                  </div>
+                </li>
+                <li class=notif-item>
+                  <span class=notif-bullet blue></span>
+                  <div>
+                    <p class=notif-text>New <strong>Google Cloud Workshop</strong> matches your profile</p>
+                    <span class=notif-time>Free Certificate & Hands-on Lab</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Quick Switch to Admin -->
+          <button class=btn btn-outline btn-sm admin-top-btn id=topAdminBtn>
+            Admin View
+          </button>
+        </div>
+      </header>
+
+      <!-- VIEW CONTAINER (Dynamically switched views) -->
+      <div class=content-body>
+
+        <!-- ================= PAGE 1: DASHBOARD ================= -->
+        <section id=dashboardPage class=page-view active>
+
+          <!-- Welcome Banner -->
+          <div class=page-header>
+            <div>
+              <h1 class=welcome-heading>Good morning, <span id=welcomeUserName>Somit</span> 👋</h1>
+              <p class=page-subtitle>Here are the opportunities that match your profile.</p>
+            </div>
+            <div class=header-action-group>
+              <button class=btn btn-primary onclick=navigateTo('opportunitiesPage')>Explore All</button>
+            </div>
+          </div>
+
+          <!-- 4 Simple Statistics Cards -->
+          <div class=stats-grid>
+            <div class=stat-card>
+              <div class=stat-icon-wrap bg-purple>⭐</div>
+              <div class=stat-details>
+                <span class=stat-label>Recommended</span>
+                <h3 class=stat-value id=statRecommended>12</h3>
+              </div>
+            </div>
+
+            <div class=stat-card>
+              <div class=stat-icon-wrap bg-green>✓</div>
+              <div class=stat-details>
+                <span class=stat-label>Eligible</span>
+                <h3 class=stat-value id=statEligible>8</h3>
+              </div>
+            </div>
+
+            <div class=stat-card>
+              <div class=stat-icon-wrap bg-blue>📋</div>
+              <div class=stat-details>
+                <span class=stat-label>Applications</span>
+                <h3 class=stat-value id=statApplications>5</h3>
+              </div>
+            </div>
+
+            <div class=stat-card>
+              <div class=stat-icon-wrap bg-red>⏰</div>
+              <div class=stat-details>
+                <span class=stat-label>Deadlines Soon</span>
+                <h3 class=stat-value id=statDeadlines>3</h3>
+              </div>
+            </div>
+          </div>
+
+          <!-- Profile Match Card (Section 7) -->
+          <div class=career-match-card>
+            <div class=career-match-header>
+              <div>
+                <span class=section-tag>PERSONALIZED INTELLIGENCE</span>
+                <h2 class=career-match-title>Your Career Match</h2>
+                <h3 class=target-role id=dashCareerRole>AI / ML Engineer</h3>
+              </div>
+              <div class=match-score-badge>
+                <span class=match-score-number id=dashCareerMatchPct>92%</span>
+                <span class=match-score-sub>Fit Score</span>
+              </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class=match-progress-container>
+              <div class=match-progress-bar>
+                <div class=match-progress-fill id=dashProgressBar style=width: 92%;></div>
+              </div>
+            </div>
+
+            <p class=career-match-text>
+              Your profile is a strong match for AI/ML opportunities.
+            </p>
+
+            <div class=career-match-footer>
+              <div class=skills-pill-group id=dashTopSkills>
+                <span class=skill-pill>Python</span>
+                <span class=skill-pill>Machine Learning</span>
+                <span class=skill-pill>SQL</span>
+              </div>
+              <button class=btn btn-primary onclick=navigateTo('recommendationsPage')>
+                View Recommendations &rarr;
+              </button>
+            </div>
+          </div>
+
+          <!-- Section 8: Top Recommendations -->
+          <div class=section-container>
+            <div class=section-header-flex>
+              <div>
+                <h2 class=section-title>Recommended for You</h2>
+                <p class=section-sub>Opportunities automatically aligned with your branch, skills, and goals.</p>
+              </div>
+              <button class=link-btn onclick=navigateTo('recommendationsPage')>See all recommendations &rarr;</button>
+            </div>
+
+            <!-- Top 3-4 Cards Container -->
+            <div class=cards-grid id=dashboardRecommendationsGrid>
+              <!-- Rendered dynamically by script.js -->
+            </div>
+          </div>
+
+        </section>
+
+
+        <!-- ================= PAGE 2: OPPORTUNITIES ================= -->
+        <section id=opportunitiesPage class=page-view>
+
+          <div class=page-header>
+            <div>
+              <h1 class=page-title>Explore Opportunities</h1>
+              <p class=page-subtitle>Find internships, hackathons, workshops and more.</p>
+            </div>
+          </div>
+
+          <!-- Search & Filter Controls -->
+          <div class=controls-card>
+            <!-- Search Bar -->
+            <div class=search-input-wrap>
+              <span class=search-icon>🔎</span>
+              <input type=text id=oppSearchInput placeholder=Search opportunities, organizations, or skills... />
+              <button class=clear-search-btn id=clearSearchBtn style=display: none;>&times;</button>
+            </div>
+
+            <!-- Filter Buttons & Sorting Bar -->
+            <div class=filters-toolbar>
+              <div class=filter-pills id=categoryFilterGroup>
+                <button class=filter-pill active data-category=All>All</button>
+                <button class=filter-pill data-category=Internship>Internships</button>
+                <button class=filter-pill data-category=Hackathon>Hackathons</button>
+                <button class=filter-pill data-category=Workshop>Workshops</button>
+                <button class=filter-pill data-category=Certification>Certifications</button>
+                <button class=filter-pill data-category=Scholarship>Scholarships</button>
+                <button class=filter-pill data-category=Part-time>Part-time</button>
+              </div>
+
+              <div class=sorting-wrap>
+                <label for=sortBySelect>Sort by:</label>
+                <select id=sortBySelect class=form-select>
+                  <option value=bestMatch>Best Match</option>
+                  <option value=deadline>Deadline (Urgent)</option>
+                  <option value=latest>Latest</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Opportunities List Grid -->
+          <div class=opportunities-results-meta>
+            <span id=resultsCount>Showing 12 opportunities</span>
+            <span class=eligibility-tip>💡 Eligibility computed deterministically against your live profile</span>
+          </div>
+
+          <div class=cards-grid id=opportunitiesGrid>
+            <!-- Populated by script.js -->
+          </div>
+
+        </section>
+
+
+        <!-- ================= PAGE 3: RECOMMENDATIONS ================= -->
+        <section id=recommendationsPage class=page-view>
+          <div class=page-header>
+            <div>
+              <h1 class=page-title>⭐ Recommended for You</h1>
+              <p class=page-subtitle>Personalized opportunities ranked by the Opportunity Intelligence Algorithm.</p>
+            </div>
+          </div>
+
+          <div class=recommendations-banner>
+            <div class=banner-icon>🎯</div>
+            <div class=banner-content>
+              <h3>Intelligent Opportunity Matcher</h3>
+              <p>Scores are calculated deterministically: Skill match (35%), Career goal (20%), Academic fit (15%),
+                Location (10%), Experience (10%), and Urgency (10%).</p>
+            </div>
+          </div>
+
+          <div class=cards-grid id=recommendationsGrid>
+            <!-- Populated by script.js -->
+          </div>
+        </section>
+
+
+        <!-- ================= PAGE 4: APPLICATIONS ================= -->
+        <section id=applicationsPage class=page-view>
+          <div class=page-header>
+            <div>
+              <h1 class=page-title>📋 Application Tracker</h1>
+              <p class=page-subtitle>Track your opportunity pipeline from saved to selected.</p>
+            </div>
+          </div>
+
+          <!-- Pipeline explanation bar -->
+          <div class=pipeline-bar>
+            <div class=pipeline-step><span class=step-num>1</span> Saved</div>
+            <span class=pipeline-arrow>&rarr;</span>
+            <div class=pipeline-step><span class=step-num>2</span> Applied</div>
+            <span class=pipeline-arrow>&rarr;</span>
+            <div class=pipeline-step><span class=step-num>3</span> Under Review</div>
+            <span class=pipeline-arrow>&rarr;</span>
+            <div class=pipeline-step><span class=step-num>4</span> Interview</div>
+            <span class=pipeline-arrow>&rarr;</span>
+            <div class=pipeline-step success><span class=step-num>5</span> Selected</div>
+          </div>
+
+          <!-- Applications list -->
+          <div class=applications-container id=applicationsContainer>
+            <!-- Populated by script.js -->
+          </div>
+
+          <!-- Saved Opportunities Section -->
+          <div class=section-container saved-section>
+            <h2 class=section-title>Saved Opportunities (♥)</h2>
+            <p class=section-sub>Opportunities bookmarked for quick review.</p>
+            <div class=cards-grid id=savedGrid>
+              <!-- Populated by script.js -->
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ================= PAGE 5: DEADLINES ================= -->
+        <section id=deadlinesPage class=page-view>
+          <div class=page-header>
+            <div>
+              <h1 class=page-title>⏰ Upcoming Deadlines</h1>
+              <p class=page-subtitle>Never miss an application. Sorted by urgency with real-time countdown.</p>
+            </div>
+          </div>
+
+          <div class=deadlines-list id=deadlinesList>
+            <!-- Populated by script.js -->
+          </div>
+        </section>
+
+
+        <!-- ================= PAGE 6: CAREER ROADMAP ================= -->
+        <section id=roadmapPage class=page-view>
+          <div class=page-header>
+            <div>
+              <h1 class=page-title>🎯 Career Roadmap</h1>
+              <p class=page-subtitle>Skill gap analysis connecting your REVA curriculum to career goals.</p>
+            </div>
+          </div>
+
+          <div class=roadmap-card>
+            <div class=roadmap-header>
+              <div>
+                <span class=section-tag>TARGET MILESTONE</span>
+                <h2 id=roadmapRoleTitle>AI / ML Engineer Roadmap</h2>
+                <p class=roadmap-sub>Custom progression path tailored for your current skills and target opportunities.
+                </p>
+              </div>
+              <div class=readiness-box>
+                <span class=readiness-label>Career Readiness</span>
+                <span class=readiness-value id=roadmapReadinessPct>72%</span>
+              </div>
+            </div>
+
+            <!-- Visual Flow Roadmap (Section 17) -->
+            <div class=roadmap-flow id=roadmapFlowContainer>
+              <!-- Populated by script.js -->
+            </div>
+
+            <div class=roadmap-footer>
+              <div class=roadmap-insights>
+                <h4>💡 Intelligence Insights:</h4>
+                <p>You have mastered <strong>Python</strong>, <strong>SQL</strong>, and foundational <strong>Machine
+                    Learning</strong>! Closing the <strong>PyTorch</strong> and <strong>Deep Learning</strong> gap will
+                  boost your match score to 98% for Tier-1 AI/ML internships.</p>
+              </div>
+              <button class=btn btn-outline onclick=navigateTo('opportunitiesPage')>Find Internships for Your
+                Skills</button>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ================= PAGE 7: PROFILE ================= -->
+        <section id=profilePage class=page-view>
+          <div class=page-header>
+            <div>
+              <h1 class=page-title>👤 Student Profile</h1>
+              <p class=page-subtitle>Keep your academic and skill information updated for accurate matching.</p>
+            </div>
+          </div>
+
+          <div class=profile-card>
+            <form id=profileForm>
+              <div class=form-row-2>
+                <div class=form-group>
+                  <label for=profName>Full Name</label>
+                  <input type=text id=profName required />
+                </div>
+                <div class=form-group>
+                  <label for=profEmail>REVA Email</label>
+                  <input type=email id=profEmail required />
+                </div>
+              </div>
+
+              <div class=form-row-3>
+                <div class=form-group>
+                  <label for=profSRN>SRN (Student Roll No)</label>
+                  <input type=text id=profSRN required />
+                </div>
+                <div class=form-group>
+                  <label for=profBranch>Branch</label>
+                  <select id=profBranch class=form-select>
+                    <option value=AIML>AIML (AI & Machine Learning)</option>
+                    <option value=CSE>CSE (Computer Science)</option>
+                    <option value=ECE>ECE (Electronics & Comm)</option>
+                    <option value=ISE>ISE (Information Science)</option>
+                    <option value=Mechanical>Mechanical Engineering</option>
+                  </select>
+                </div>
+                <div class=form-group>
+                  <label for=profYear>Year</label>
+                  <select id=profYear class=form-select>
+                    <option value=1st Year>1st Year</option>
+                    <option value=2nd Year>2nd Year</option>
+                    <option value=3rd Year>3rd Year</option>
+                    <option value=4th Year>4th Year</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class=form-row-2>
+                <div class=form-group>
+                  <label for=profCGPA>CGPA</label>
+                  <input type=number id=profCGPA step=0.1 min=0 max=10 required />
+                </div>
+                <div class=form-group>
+                  <label for=profLocation>Preferred Location</label>
+                  <input type=text id=profLocation placeholder=e.g. Bangalore / Remote required />
+                </div>
+              </div>
+
+              <div class=form-group>
+                <label for=profGoal>Career Goal</label>
+                <input type=text id=profGoal placeholder=e.g. AI / ML Engineer required />
+              </div>
+
+              <div class=form-group>
+                <label for=profSkills>Skills (comma-separated)</label>
+                <input type=text id=profSkills placeholder=Python, SQL, Machine Learning, HTML, CSS, JavaScript
+                  required />
+                <span class=field-hint>Separate each skill with a comma (e.g. Python, SQL, C++, Machine
+                  Learning).</span>
+              </div>
+
+              <div class=profile-actions>
+                <button type=submit class=btn btn-primary>Save Profile Changes</button>
+                <span id=profileSaveMsg class=save-toast-inline style=display: none;>✓ Profile updated
+                  successfully!</span>
+              </div>
+            </form>
+          </div>
+        </section>
+
+
+        <!-- ================= PAGE 8: ADMIN DEMO ================= -->
+        <section id=adminPage class=page-view>
+          <div class=page-header>
+            <div>
+              <h1 class=page-title>⚙️ Admin Portal (Curator Demo)</h1>
+              <p class=page-subtitle>REVA Placement & Opportunity Cell management view.</p>
+            </div>
+            <button class=btn btn-outline onclick=navigateTo('dashboardPage')>&larr; Return to Student View</button>
+          </div>
+
+          <!-- Admin Metrics -->
+          <div class=stats-grid>
+            <div class=stat-card>
+              <div class=stat-icon-wrap bg-blue>📊</div>
+              <div class=stat-details>
+                <span class=stat-label>Total Opportunities</span>
+                <h3 class=stat-value id=adminTotalOpp>12</h3>
+              </div>
+            </div>
+            <div class=stat-card>
+              <div class=stat-icon-wrap bg-green>🛡️</div>
+              <div class=stat-details>
+                <span class=stat-label>Verified Opportunities</span>
+                <h3 class=stat-value id=adminVerifiedOpp>12</h3>
+              </div>
+            </div>
+            <div class=stat-card>
+              <div class=stat-icon-wrap bg-purple>📝</div>
+              <div class=stat-details>
+                <span class=stat-label>Tracked Applications</span>
+                <h3 class=stat-value id=adminTrackedApps>5</h3>
+              </div>
+            </div>
+            <div class=stat-card>
+              <div class=stat-icon-wrap bg-yellow>🔥</div>
+              <div class=stat-details>
+                <span class=stat-label>Popular Skills</span>
+                <h3 class=stat-value style=font-size: 1.1rem; line-height: 1.3;>Python, ML, Cloud</h3>
+              </div>
+            </div>
+          </div>
+
+          <!-- Add Opportunity Form -->
+          <div class=admin-form-card>
+            <div class=admin-form-header>
+              <h2>+ Add Opportunity</h2>
+              <p>Add a new curated opportunity for REVA students. Instantly processed by the intelligence engine.</p>
+            </div>
+
+            <form id=addOppForm>
+              <div class=form-row-2>
+                <div class=form-group>
+                  <label for=newOppTitle>Opportunity Title</label>
+                  <input type=text id=newOppTitle placeholder=e.g. Deep Learning Research Intern required />
+                </div>
+                <div class=form-group>
+                  <label for=newOppOrg>Organization</label>
+                  <input type=text id=newOppOrg placeholder=e.g. AI Research Labs required />
+                </div>
+              </div>
+
+              <div class=form-row-3>
+                <div class=form-group>
+                  <label for=newOppType>Category / Type</label>
+                  <select id=newOppType class=form-select>
+                    <option value=Internship>Internship</option>
+                    <option value=Hackathon>Hackathon</option>
+                    <option value=Workshop>Workshop</option>
+                    <option value=Certification>Certification</option>
+                    <option value=Scholarship>Scholarship</option>
+                    <option value=Part-time>Part-time</option>
+                  </select>
+                </div>
+                <div class=form-group>
+                  <label for=newOppDeadline>Deadline Date</label>
+                  <input type=date id=newOppDeadline required />
+                </div>
+                <div class=form-group>
+                  <label for=newOppLocation>Location</label>
+                  <input type=text id=newOppLocation placeholder=e.g. Bangalore / Remote required />
+                </div>
+              </div>
+
+              <div class=form-row-3>
+                <div class=form-group>
+                  <label for=newOppMinCGPA>Minimum CGPA</label>
+                  <input type=number id=newOppMinCGPA step=0.1 min=0 max=10 placeholder=e.g. 7.5 value=7.5 required />
+                </div>
+                <div class=form-group>
+                  <label for=newOppBranch>Eligible Branch</label>
+                  <input type=text id=newOppBranch placeholder=e.g. AIML, CSE, ISE or All value=All required />
+                </div>
+                <div class=form-group>
+                  <label for=newOppYears>Eligible Years</label>
+                  <input type=text id=newOppYears placeholder=e.g. 2nd Year, 3rd Year value=2nd Year, 3rd Year, 4th Year
+                    required />
+                </div>
+              </div>
+
+              <div class=form-group>
+                <label for=newOppSkills>Required Skills (comma-separated)</label>
+                <input type=text id=newOppSkills placeholder=e.g. Python, Machine Learning, TensorFlow required />
+              </div>
+
+              <div class=form-group>
+                <label for=newOppDesc>Description</label>
+                <textarea id=newOppDesc rows=3 placeholder=Brief details about role, stipend, perks...
+                  required></textarea>
+              </div>
+
+              <div class=form-group>
+                <label for=newOppUrl>Application Link / URL</label>
+                <input type=url id=newOppUrl placeholder=https://example.com/apply value=https://reva.edu.in required />
+              </div>
+
+              <button type=submit class=btn btn-primary>+ Publish Opportunity</button>
+            </form>
+          </div>
+
+        </section>
+
+      </div>
+    </main>
+
+  </div>
+
+
+  <!-- =========================================================
+       3. MODALS (WHY RECOMMENDED & OPPORTUNITY DETAILS)
+       ========================================================= -->
+
+  <!-- MODAL: WHY RECOMMENDED (Section 12) -->
+  <div class=modal-overlay id=whyModal>
+    <div class=modal-dialog>
+      <div class=modal-header>
+        <div>
+          <span class=modal-tag>OPPORTUNITY INTELLIGENCE</span>
+          <h2 class=modal-title>Why this is recommended</h2>
+        </div>
+        <button class=modal-close id=closeWhyModal>&times;</button>
+      </div>
+
+      <div class=modal-body id=whyModalBody>
+        <!-- Populated dynamically by script.js -->
+      </div>
+    </div>
+  </div>
+
+
+  <!-- MODAL: OPPORTUNITY DETAILS (Section 21) -->
+  <div class=modal-overlay id=detailsModal>
+    <div class=modal-dialog modal-dialog-lg>
+      <div class=modal-header>
+        <div>
+          <span class=modal-tag id=detTypeBadge>Internship</span>
+          <h2 class=modal-title id=detTitle>AI/ML Intern</h2>
+          <p class=modal-subtitle id=detOrg>TechNova</p>
+        </div>
+        <button class=modal-close id=closeDetailsModal>&times;</button>
+      </div>
+
+      <div class=modal-body id=detailsModalBody>
+        <!-- Populated dynamically by script.js -->
+      </div>
+
+      <div class=modal-footer id=detailsModalFooter>
+        <button class=btn btn-outline id=detSaveBtn>♡ Save</button>
+        <button class=btn btn-outline id=detWhyBtn>Why Recommended?</button>
+        <a href=# target=_blank class=btn btn-primary id=detApplyBtn>Apply Now &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div class=toast-container id=toastContainer></div>
+
+  <!-- SCRIPT -->
+  <script src=script.js></script>
+</body>
+
+</html>
